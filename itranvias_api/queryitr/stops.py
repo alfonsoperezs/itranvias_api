@@ -78,3 +78,15 @@ def _parse_stop(stop, data) -> Stop:
         long=stop["posx"],
         lat=stop["posy"],
     )
+
+def get_stop_by_keywords(keywords: str) -> list[Stop]:
+    """
+    Get stops whose name match with the given keywords
+
+    :param keywords: A string with the keywords to search
+
+    :return: A list with stops that matches with the keywords
+    """
+    keywords_list = keywords.lower().split(" ")
+    stops = get_all_stops()
+    return [stop for stop in stops if all(keyword in stop.name.lower() for keyword in keywords_list)]
