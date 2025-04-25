@@ -160,3 +160,9 @@ def get_line_bus_map(line_id: int) -> dict[int, Route]:
     """
 
     return get_line_maps(line_id=line_id, show="B")
+
+def get_line_id(name: str) -> int:
+    lines = get_all_lines()
+    for line_id in lines:
+        if lines[line_id].name.lower() == name.lower():
+            return line_id
